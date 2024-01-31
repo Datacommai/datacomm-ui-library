@@ -1,0 +1,39 @@
+.dt-button {
+  box-shadow: 2px 2px 4px 0px #073C3340;
+  border-radius: 24px;
+  color: #F7FAF5;
+  margin: 16px;
+  text-transform: capitalize;
+}
+
+.dt-button-primary-regular {
+  background-color:#035F50;
+  width: 178px;
+  height: 44px;
+}
+
+.dt-button-primary-small {
+  background-color: #035F50;
+  width: 154px;
+  height: 44px;
+}
+
+.dt-button-secondary-regular {
+  background-color: #BAD1AD;
+  width: 178px;
+  height: 44px;
+}
+
+.dt-button-secondary-small {
+  background-color: #BAD1AD;
+  width: 154px;
+  height: 44px;
+}
+
+.dt-button-primary-regular:hover, .dt-button-primary-small:hover {
+  opacity: 70%;
+}
+
+.dt-button-secondary-regular:hover, .dt-button-secondary-small:hover {
+  background-color: #C9DEBD;
+}
