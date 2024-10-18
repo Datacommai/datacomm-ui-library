@@ -15,12 +15,13 @@ export function DatacommButton(props: ButtonProps) {
   const { type, title, onClick } = props;
 
   const styles = () => {
-    switch (type as ButtonTypes) {
+    switch (type) {
       case ButtonTypes.PRIMARY:
         return "bg-[#6AB9BE] rounded-md text-white w-[357px] h-[47px]";
-
-      default:
+      case ButtonTypes.SECONDARY:
         return "bg-white text-[#4A4C56] border border-[#D2D2D5] rounded-md w-[357px] h-[47px]";
+      default:
+        return "bg-[#6AB9BE] rounded-md text-white w-[357px] h-[47px]";
     }
   };
 

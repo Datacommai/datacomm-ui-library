@@ -9,12 +9,10 @@ describe("DatacommButton", () => {
       <DatacommButton type={ButtonTypes.PRIMARY} title="Primary Button" />
     );
 
-    // Check if the button is in the document
     const buttonElement = screen.getByText("Primary Button");
     expect(buttonElement).toBeInTheDocument();
-
-    // Check if the button has the correct styles for PRIMARY
     expect(buttonElement).toHaveClass("bg-[#6AB9BE]");
+    expect(buttonElement).toHaveClass("text-white");
   });
 
   test("calls the onClick function when clicked", () => {
@@ -28,11 +26,7 @@ describe("DatacommButton", () => {
     );
 
     const buttonElement = screen.getByText("Clickable Button");
-
-    // Simulate a click event
     fireEvent.click(buttonElement);
-
-    // Ensure the click handler was called
     expect(handleClick).toHaveBeenCalledTimes(1);
   });
 
@@ -42,11 +36,7 @@ describe("DatacommButton", () => {
     );
 
     const buttonElement = screen.getByText("Secondary Button");
-
-    // Check if the button is in the document
     expect(buttonElement).toBeInTheDocument();
-
-    // Check if the button has the correct styles for SECONDARY
     expect(buttonElement).toHaveClass("bg-white");
     expect(buttonElement).toHaveClass("text-[#4A4C56]");
     expect(buttonElement).toHaveClass("border");
