@@ -98,7 +98,15 @@ export function DatacommInput(props: InputProps) {
           </>
         );
       default:
-        return null;
+        return (
+          <Image
+            src="/assets/icons/user-icon.svg"
+            alt="User"
+            width={14}
+            height={14}
+            className="absolute left-2 top-1/2 transform -translate-y-1/2"
+          />
+        );
     }
   };
 
