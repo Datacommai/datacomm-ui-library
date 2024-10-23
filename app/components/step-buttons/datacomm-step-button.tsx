@@ -23,9 +23,12 @@ export function StepButton(props: StepButtonProps) {
 
   const retrieveStep = () => {
     const newStep = type === StepButtonTypes.BACK ? step - 1 : step + 1;
-    setStep(newStep);
-    if (onClick) {
-      onClick(newStep);
+
+    if (newStep >= -1 && newStep <= 1) {
+      if (newStep !== step) {
+        setStep(newStep);
+        onClick(newStep);
+      }
     }
   };
 
@@ -67,7 +70,8 @@ export function StepButton(props: StepButtonProps) {
     }
   };
 
-  const buttonStyles = "w-fit h-fit bg-black border-none p-0 rounded-full";
+  const buttonStyles =
+    "w-fit h-fit bg-transparent border-none p-0 rounded-full";
 
   return (
     <Button className={buttonStyles} onClick={retrieveStep}>

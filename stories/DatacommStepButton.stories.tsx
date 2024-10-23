@@ -12,14 +12,22 @@ const meta: Meta<typeof StepButton> = {
 export default meta;
 type Story = StoryObj<typeof StepButton>;
 
+const backgroundDecorator = (Story: () => JSX.Element) => (
+  <div style={{ backgroundColor: "lightGrey", padding: "20px" }}>
+    <Story />
+  </div>
+);
+
 export const BackButton: Story = {
   args: {
     type: StepButtonTypes.BACK,
   },
+  decorators: [backgroundDecorator],
 };
 
 export const ForwardButton: Story = {
   args: {
     type: StepButtonTypes.FORWARD,
   },
+  decorators: [backgroundDecorator],
 };
