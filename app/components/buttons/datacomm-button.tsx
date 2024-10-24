@@ -19,7 +19,7 @@ export type ButtonProps = {
   onClick?: () => void;
 };
 
-export function DatacommButton(props: ButtonProps) {
+export const DatacommButton: React.FC<ButtonProps> = (props) => {
   const { type, title, iconType, onClick } = props;
 
   const styles = () => {
@@ -69,4 +69,4 @@ export function DatacommButton(props: ButtonProps) {
       {title}
     </Button>
   );
-}
+};
