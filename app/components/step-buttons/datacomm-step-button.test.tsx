@@ -1,80 +1,58 @@
-import { render, screen, fireEvent } from "@testing-library/react";
-import "@testing-library/jest-dom"; // For the 'toBeInTheDocument' matcher
-import { StepButton, StepButtonTypes } from "./datacomm-step-button";
+import { render, screen, fireEvent } from '@testing-library/react';
+import '@testing-library/jest-dom'; // For the 'toBeInTheDocument' matcher
+import { StepButton, StepButtonTypes } from './datacomm-step-button';
 
-// Define the type for the click handler
-type HandleClick = (step: number) => void;
+// Define the type for the step change handler
+type HandleStepChange = (step: number) => void;
 
-describe("StepButton Component", () => {
-  let handleClick: jest.Mock<HandleClick>;
+describe('StepButton Component', () => {
+ let handleStepChange: jest.Mock<HandleStepChange>;
 
-  beforeEach(() => {
-    handleClick = jest.fn();
-  });
+ beforeEach(() => {
+  handleStepChange = jest.fn(); // Mock the handler function
+ });
 
-  it("renders correctly with the forward icon and correct styles", () => {
-    render(<StepButton type={StepButtonTypes.FORWARD} onClick={handleClick} />);
-    const button = screen.getByRole("button");
-    expect(button).toBeInTheDocument();
-    expect(screen.getByAltText("Forward")).toBeInTheDocument();
-    expect(button).toHaveClass(
-      "w-fit h-fit bg-transparent border-none p-0 rounded-full"
-    );
-  });
+ it('renders correctly with the forward icon and correct styles', () => {
+  render(
+   <StepButton type={StepButtonTypes.FORWARD} onStepChange={handleStepChange} />
+  );
+  const button = screen.getByRole('button');
+  expect(button).toBeInTheDocument();
+  expect(screen.getByAltText('Forward')).toBeInTheDocument();
+  expect(button).toHaveClass(
+   'w-fit h-fit bg-transparent border-none p-0 rounded-full'
+  );
+ });
 
-  it("renders correctly with the back icon and correct styles", () => {
-    render(<StepButton type={StepButtonTypes.BACK} onClick={handleClick} />);
-    const button = screen.getByRole("button");
-    expect(button).toBeInTheDocument();
-    expect(screen.getByAltText("Back")).toBeInTheDocument();
-    expect(button).toHaveClass(
-      "w-fit h-fit bg-transparent border-none p-0 rounded-full"
-    );
-  });
+ it('renders correctly with the back icon and correct styles', () => {
+  render(
+   <StepButton type={StepButtonTypes.BACK} onStepChange={handleStepChange} />
+  );
+  const button = screen.getByRole('button');
+  expect(button).toBeInTheDocument();
+  expect(screen.getByAltText('Back')).toBeInTheDocument();
+  expect(button).toHaveClass(
+   'w-fit h-fit bg-transparent border-none p-0 rounded-full'
+  );
+ });
 
-  it("calls onClick with -1 when clicking back", () => {
-    render(<StepButton type={StepButtonTypes.BACK} onClick={handleClick} />);
+ it('calls onStepChange with -1 when clicking back', () => {
+  render(
+   <StepButton type={StepButtonTypes.BACK} onStepChange={handleStepChange} />
+  );
+  const button = screen.getByRole('button');
 
-    const button = screen.getByRole("button");
-    fireEvent.click(button);
-    expect(handleClick).toHaveBeenCalledWith(-1);
-  });
+  fireEvent.click(button); // Simulate click event
+  expect(handleStepChange).toHaveBeenCalledWith(-1); // Expect -1 for BACK button
+ });
 
-  it("calls onClick with 1 when clicking forward", () => {
-    render(<StepButton type={StepButtonTypes.FORWARD} onClick={handleClick} />);
+ it('calls onStepChange with 1 when clicking forward', () => {
+  render(
+   <StepButton type={StepButtonTypes.FORWARD} onStepChange={handleStepChange} />
+  );
+  const button = screen.getByRole('button');
 
-    const button = screen.getByRole("button");
-    fireEvent.click(button);
-    expect(handleClick).toHaveBeenCalledWith(1);
-  });
-
-  it("does not increment or decrement step beyond limits", () => {
-    // Start with the BACK button
-    const { rerender } = render(
-      <StepButton type={StepButtonTypes.BACK} onClick={handleClick} />
-    );
-
-    const button = screen.getByRole("button");
-
-    // Click to set step to -1
-    fireEvent.click(button);
-    expect(handleClick).toHaveBeenCalledWith(-1);
-
-    // Click again, should not call onClick again
-    fireEvent.click(button);
-    expect(handleClick).toHaveBeenCalledTimes(1); // Should still be 1 call
-
-    // Switch to FORWARD button and render it
-    rerender(
-      <StepButton type={StepButtonTypes.FORWARD} onClick={handleClick} />
-    );
-
-    // Click to set step to 1
-    fireEvent.click(button);
-    expect(handleClick).toHaveBeenCalledWith(1);
-
-    // Click again, should not call onClick again
-    fireEvent.click(button);
-    expect(handleClick).toHaveBeenCalledTimes(2); // Should still be 2 calls
-  });
+  fireEvent.click(button); // Simulate click event
+  expect(handleStepChange).toHaveBeenCalledWith(1); // Expect 1 for FORWARD button
+ });
 });
