@@ -10,7 +10,7 @@ describe("DatacommLink Component", () => {
 
     const link = screen.getByText("Test Link");
     expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute("href", "#");
+    expect(link.parentElement).toHaveAttribute("href", "#");
   });
 
   it("renders different types of links", () => {

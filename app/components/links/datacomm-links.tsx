@@ -1,4 +1,4 @@
-import React from "react";
+import Link from "next/link";
 
 export enum LinkTypes {
   STANDARD,
@@ -27,8 +27,8 @@ export const DatacommLink: React.FC<LinkProps> = ({ type, title, url }) => {
   };
 
   return (
-    <a href={url} className={styles()}>
-      {title}
-    </a>
+    <Link href={url} passHref>
+      <span className={styles()}>{title}</span>
+    </Link>
   );
 };
