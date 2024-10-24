@@ -20,7 +20,7 @@ export type InputProps = {
   onInput?: (event: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
-export function DatacommInput(props: InputProps) {
+export const DatacommInput: React.FC<InputProps> = (props) => {
   const { type, onInput } = props;
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -130,4 +130,4 @@ export function DatacommInput(props: InputProps) {
       />
     </div>
   );
-}
+};
