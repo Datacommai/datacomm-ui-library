@@ -1,8 +1,8 @@
 import Image from "next/image";
 
 export enum StepBarTypes {
-  ACTIVE,
-  INACTIVE,
+  ACTIVE = "active",
+  INACTIVE = "inactive",
 }
 
 export enum StepBarIconTypes {
