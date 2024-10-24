@@ -5,7 +5,7 @@ import {
 } from "../app/components/step-bars/datacomm-step-bar";
 
 const meta: Meta<typeof StepBar> = {
-  title: "Components/StepBar",
+  title: "Datacomm/StepBar",
   component: StepBar,
 };
 
