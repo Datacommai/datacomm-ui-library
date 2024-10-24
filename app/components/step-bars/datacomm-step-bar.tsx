@@ -15,7 +15,7 @@ type StepBarProps = {
   isActive: boolean;
 };
 
-export const StepBar: React.FC<StepBarProps> = ({ type, isActive }) => {
+export const DatacommStepBar: React.FC<StepBarProps> = ({ type, isActive }) => {
   const getInputAttributes = (type: StepBarTypes) => {
     switch (type) {
       case StepBarTypes.ACTIVE:
