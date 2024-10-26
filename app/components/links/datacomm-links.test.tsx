@@ -10,7 +10,9 @@ describe("DatacommLink Component", () => {
 
     const link = screen.getByText("Test Link");
     expect(link).toBeInTheDocument();
-    expect(link.parentElement).toHaveAttribute("href", "#");
+
+    // Check the href attribute directly on the link element
+    expect(link.closest("a")).toHaveAttribute("href", "#");
   });
 
   it("renders different types of links", () => {
@@ -19,13 +21,13 @@ describe("DatacommLink Component", () => {
     );
 
     const standardLink = screen.getByText("Standard Link");
-    expect(standardLink).toHaveClass("text-[#6AB9BE] text-[14px]");
+    expect(standardLink).toHaveClass("text-[#6AB9BE] text-sm");
 
     rerender(
       <DatacommLink type={LinkTypes.SMALL} title="Small Link" url="#" />
     );
     const smallLink = screen.getByText("Small Link");
-    expect(smallLink).toHaveClass("text-[#6AB9BE] text-[10px]");
+    expect(smallLink).toHaveClass("text-[#6AB9BE] text-xs");
 
     rerender(
       <DatacommLink
@@ -35,6 +37,6 @@ describe("DatacommLink Component", () => {
       />
     );
     const underlinedLink = screen.getByText("Underlined Link");
-    expect(underlinedLink).toHaveClass("text-[#20caad] text-[10px] underline");
+    expect(underlinedLink).toHaveClass("text-[#20caad] text-xs underline");
   });
 });

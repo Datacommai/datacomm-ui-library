@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 export enum LinkTypes {
-  STANDARD,
-  SMALL,
-  UNDERLINED,
+  STANDARD = "standard",
+  SMALL = "small",
+  UNDERLINED = "underlined",
 }
 
 export type LinkProps = {
@@ -16,19 +16,19 @@ export const DatacommLink: React.FC<LinkProps> = ({ type, title, url }) => {
   const styles = () => {
     switch (type) {
       case LinkTypes.STANDARD:
-        return "text-[#6AB9BE] text-[14px]";
+        return "text-[#6AB9BE] text-sm";
       case LinkTypes.SMALL:
-        return "text-[#6AB9BE] text-[10px]";
+        return "text-[#6AB9BE] text-xs";
       case LinkTypes.UNDERLINED:
-        return "text-[#20caad] text-[10px] underline";
+        return "text-[#20caad] text-xs underline";
       default:
-        return "text-[#6AB9BE] text-[14px]";
+        return "text-[#6AB9BE] text-sm";
     }
   };
 
   return (
-    <Link href={url} passHref>
-      <span className={styles()}>{title}</span>
+    <Link className={styles()} href={url} passHref>
+      {title}
     </Link>
   );
 };
