@@ -52,9 +52,9 @@ export const DatacommSignUp = () => {
           />
         </div>
         <span className="flex gap-5 my-4 justify-center items-center">
-          <Separator className="w-[53px] h-[2px]" />
+          <Separator className="w-[53px] h-[1px]" />
           <p className="text-[#A5A5AB]">or</p>
-          <Separator className="w-[53px] h-[2px]" />
+          <Separator className="w-[53px] h-[1px]" />
         </span>
 
         <div className="grid grid-cols-1 gap-2">
