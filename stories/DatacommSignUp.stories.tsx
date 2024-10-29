@@ -12,6 +12,9 @@ type Story = StoryObj<typeof DatacommSignUp>;
 
 export const SignUp: Story = {
   args: {
-    // If DatacommSignUp requires props, add them here
+    title: "Welcome DataComm!",
+    description:
+      "Sign up to Datacomm to start building personalized outreach for your clients.",
+    logo: "/assets/images/mock-logo.svg",
   },
 };

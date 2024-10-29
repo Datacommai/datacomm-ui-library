@@ -3,9 +3,24 @@ import { DatacommSignUp } from "./datacomm-sign-up";
 import "@testing-library/jest-dom";
 
 describe("DatacommSignUp", () => {
-  it("renders the component", () => {
-    render(<DatacommSignUp />);
+  const mockOnSignUp = jest.fn();
+  const mockOnContinueSSO = jest.fn();
+  const mockOnContinueGoogle = jest.fn();
 
+  beforeEach(() => {
+    render(
+      <DatacommSignUp
+        title="Welcome DataComm!"
+        description="Sign up to Datacomm to start building personalized outreach."
+        logo="/path/to/logo.png"
+        onSignUp={mockOnSignUp}
+        onContinueSSO={mockOnContinueSSO}
+        onContinueGoogle={mockOnContinueGoogle}
+      />
+    );
+  });
+
+  it("renders the component", () => {
     // Check for the presence of title and description
     expect(screen.getByText(/Welcome DataComm!/i)).toBeInTheDocument();
     expect(
@@ -32,22 +47,18 @@ describe("DatacommSignUp", () => {
   });
 
   it("handles button clicks", () => {
-    const handleClick = jest.fn(); // Mock function for handling clicks
-    render(<DatacommSignUp />);
-
     // Click the Sign Up button
     fireEvent.click(screen.getByRole("button", { name: /Sign Up/i }));
-    // You can replace this with an actual implementation of what should happen on click
-    expect(handleClick).not.toHaveBeenCalled();
+    expect(mockOnSignUp).toHaveBeenCalled();
 
     // Click Continue with SSO button
     fireEvent.click(screen.getByRole("button", { name: /Continue with SSO/i }));
-    expect(handleClick).not.toHaveBeenCalled();
+    expect(mockOnContinueSSO).toHaveBeenCalled();
 
     // Click Continue with Google button
     fireEvent.click(
       screen.getByRole("button", { name: /Continue with Google/i })
     );
-    expect(handleClick).not.toHaveBeenCalled();
+    expect(mockOnContinueGoogle).toHaveBeenCalled();
   });
 });
