@@ -12,9 +12,10 @@ type Story = StoryObj<typeof DatacommSignUp>;
 
 export const SignUp: Story = {
   args: {
-    title: "Welcome DataComm!",
+    title: "Welcome",
     description:
       "Sign up to Datacomm to start building personalized outreach for your clients.",
     logo: "/assets/images/mock-logo.svg",
+    companyname: "DataComm!",
   },
 };

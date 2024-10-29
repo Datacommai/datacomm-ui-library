@@ -25,6 +25,7 @@ type DatacommSignUpTypes = {
   title: string;
   description: string;
   logo: string;
+  companyname: string;
   onSignUp: () => void;
   onContinueSSO: () => void;
   onContinueGoogle: () => void;
@@ -34,6 +35,7 @@ export const DatacommSignUp: React.FC<DatacommSignUpTypes> = ({
   title,
   description,
   logo,
+  companyname,
   onSignUp,
   onContinueSSO,
   onContinueGoogle,
@@ -44,7 +46,9 @@ export const DatacommSignUp: React.FC<DatacommSignUpTypes> = ({
         <Image src={logo} alt="logo" width={70} height={70} className="mr-2" />
       </CardHeader>
       <CardContent className="flex-col gap-5">
-        <CardTitle className="text-2xl text-[#1D1F2C]">{title}</CardTitle>
+        <CardTitle className="text-2xl text-[#1D1F2C]">
+          {title} {companyname}
+        </CardTitle>
         <CardDescription className="text-sm text-[#1D1F2C]">
           {description}
         </CardDescription>
@@ -86,7 +90,7 @@ export const DatacommSignUp: React.FC<DatacommSignUpTypes> = ({
       </CardContent>
       <CardFooter className="w-[264px grid grid-cols-1">
         <p className="text-xs text-[#777980]">
-          By signing up for a DataComm account, you agree to our
+          By signing up for a {companyname} account, you agree to our
         </p>
         <span className="flex items-center">
           <DatacommLink
