@@ -25,7 +25,7 @@ type DatacommSignUpTypes = {
   title: string;
   description: string;
   logo: string;
-  companyname: string;
+  companyName: string;
   onSignUp: () => void;
   onContinueSSO: () => void;
   onContinueGoogle: () => void;
@@ -35,7 +35,7 @@ export const DatacommSignUp: React.FC<DatacommSignUpTypes> = ({
   title,
   description,
   logo,
-  companyname,
+  companyName,
   onSignUp,
   onContinueSSO,
   onContinueGoogle,
@@ -45,14 +45,14 @@ export const DatacommSignUp: React.FC<DatacommSignUpTypes> = ({
       <CardHeader className="flex justify-start">
         <Image src={logo} alt="logo" width={70} height={70} className="mr-2" />
       </CardHeader>
-      <CardContent className="flex-col gap-5">
+      <CardContent className="flex flex-col gap-2">
         <CardTitle className="text-2xl text-[#1D1F2C]">
-          {title} {companyname}
+          {title} {companyName}
         </CardTitle>
         <CardDescription className="text-sm text-[#1D1F2C]">
           {description}
         </CardDescription>
-        <div className="grid grid-cols-1 gap-5 mt-5">
+        <div className="grid grid-cols-1 mt-3 gap-5">
           <DatacommInput type={InputTypes.FULLNAME} />
           <DatacommInput type={InputTypes.EMAIL} />
           <DatacommInput type={InputTypes.PASSWORD} />
@@ -63,7 +63,7 @@ export const DatacommSignUp: React.FC<DatacommSignUpTypes> = ({
             onClick={onSignUp}
           />
         </div>
-        <span className="flex gap-5 my-4 justify-center items-center">
+        <span className="flex gap-5 my-2 justify-center items-center">
           <Separator className="w-[53px] h-[1px]" />
           <p className="text-[#A5A5AB]">or</p>
           <Separator className="w-[53px] h-[1px]" />
@@ -88,9 +88,9 @@ export const DatacommSignUp: React.FC<DatacommSignUpTypes> = ({
           </span>
         </div>
       </CardContent>
-      <CardFooter className="w-[264px grid grid-cols-1">
+      <CardFooter className="w-[264px grid grid-cols-1 mt-14">
         <p className="text-xs text-[#777980]">
-          By signing up for a {companyname} account, you agree to our
+          By signing up for a {companyName} account, you agree to our
         </p>
         <span className="flex items-center">
           <DatacommLink
