@@ -3,9 +3,9 @@ import { Input } from "@/components/ui/input";
 import Image from "next/image";
 
 export enum InputTypes {
-  FULLNAME,
-  EMAIL,
-  PASSWORD,
+  FULLNAME = "fullname",
+  EMAIL = "email",
+  PASSWORD = "password",
 }
 
 export enum InputIconTypes {

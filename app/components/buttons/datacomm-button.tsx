@@ -2,14 +2,14 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 
 export enum ButtonTypes {
-  PRIMARY,
-  SECONDARY,
+  PRIMARY = "primary",
+  SECONDARY = "secondary",
 }
 
 export enum ButtonIconTypes {
-  NONE,
-  PASSKEY,
-  GOOGLE,
+  NONE = "none",
+  PASSKEY = "passkey",
+  GOOGLE = "google",
 }
 
 export type ButtonProps = {
