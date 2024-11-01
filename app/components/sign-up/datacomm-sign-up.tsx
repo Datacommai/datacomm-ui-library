@@ -113,6 +113,7 @@ export const DatacommSignUp: React.FC<DatacommSignUpTypes> = ({
             onChange={(e) => setPassword(e.target.value)}
             className={isEmpty && !password ? "border-red-500" : ""}
           />
+
           <DatacommButton
             iconType={ButtonIconTypes.NONE}
             type={ButtonTypes.PRIMARY}
@@ -145,7 +146,7 @@ export const DatacommSignUp: React.FC<DatacommSignUpTypes> = ({
           </span>
         </div>
       </CardContent>
-      <CardFooter className="w-[264px] grid grid-cols-1 mt-14">
+      <CardFooter className="w-full grid grid-cols-1 mt-14">
         <p className="text-xs text-[#777980]">
           By signing up for a {companyName} account, you agree to our
         </p>

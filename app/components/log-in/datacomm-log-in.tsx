@@ -98,12 +98,19 @@ export const DatacommLogIn: React.FC<DatacommLogInTypes> = ({
             onChange={(e) => setEmail(e.target.value)}
             className={isEmpty ? "border-red-500" : ""}
           />
-          <DatacommInput
-            type={InputTypes.PASSWORD}
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            className={isEmpty ? "border-red-500" : ""}
-          />
+          <span className="flex flex-col gap-2">
+            <DatacommInput
+              type={InputTypes.PASSWORD}
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              className={isEmpty ? "border-red-500" : ""}
+            />
+            <DatacommLink
+              type={LinkTypes.SMALL}
+              url={"#"}
+              title={"Forgot Password?"}
+            />
+          </span>
           <DatacommButton
             iconType={ButtonIconTypes.NONE}
             type={ButtonTypes.PRIMARY}
@@ -139,8 +146,8 @@ export const DatacommLogIn: React.FC<DatacommLogInTypes> = ({
           </span>
         </div>
       </CardContent>
-      <CardFooter className="w-[264px] grid grid-cols-1 mt-14">
-        <span className="flex items-center">
+      <CardFooter className="w-full grid grid-cols-1 mt-14">
+        <span className="flex items-center text-center justify-center">
           <DatacommLink
             type={LinkTypes.UNDERLINED}
             url={"#"}
