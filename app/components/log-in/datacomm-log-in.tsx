@@ -82,7 +82,7 @@ export const DatacommLogIn: React.FC<DatacommLogInTypes> = ({
       style={{ width, height }}
       className="px-10 py-3 rounded-none h-fit flex flex-col items-center justify-center"
     >
-      <CardHeader className="pl-0 w-[357px] ">
+      <CardHeader className="pl-0 w-[357px]">
         <Image src={logo} alt="logo" width={70} height={70} className="mr-2" />
       </CardHeader>
       <CardContent className="grid gap-2 justify-center">

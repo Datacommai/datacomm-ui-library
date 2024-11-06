@@ -146,7 +146,7 @@ export const DatacommSignUp: React.FC<DatacommSignUpTypes> = ({
           </span>
         </div>
       </CardContent>
-      <CardFooter className="flex flex-col  items-start w-[357px] mt-14 pl-0">
+      <CardFooter className="flex flex-col items-start w-[357px] mt-14 pl-0">
         <p className="text-xs text-[#777980] w-full">
           By signing up for a {companyName} account, you agree to our
         </p>
