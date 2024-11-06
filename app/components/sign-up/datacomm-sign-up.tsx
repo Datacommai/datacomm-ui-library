@@ -79,16 +79,16 @@ export const DatacommSignUp: React.FC<DatacommSignUpTypes> = ({
   return (
     <Card
       style={{ width, height }}
-      className="px-10 py-3 rounded-none h-fit flex-col justify-between"
+      className="px-10 py-3 rounded-none h-fit flex flex-col items-center justify-center"
     >
-      <CardHeader className="flex justify-start">
+      <CardHeader className="pl-0 w-[357px] ">
         <Image src={logo} alt="logo" width={70} height={70} className="mr-2" />
       </CardHeader>
-      <CardContent className="flex flex-col gap-2">
+      <CardContent className="grid gap-2 justify-center">
         <CardTitle className="text-2xl text-[#1D1F2C]">
           {title} {companyName}
         </CardTitle>
-        <CardDescription className="text-sm text-[#1D1F2C]">
+        <CardDescription className="text-sm w-[357px] text-[#1D1F2C]">
           {description}
         </CardDescription>
         {error && <p className="text-red-500 text-xs">{error}</p>}
@@ -121,7 +121,7 @@ export const DatacommSignUp: React.FC<DatacommSignUpTypes> = ({
             onClick={handleSignUp}
           />
         </div>
-        <span className="flex gap-5 my-2 justify-center items-center">
+        <span className="flex gap-5 my-2 w-[357px] justify-center items-center">
           <Separator className="w-[53px] h-[1px]" />
           <p className="text-[#A5A5AB]">or</p>
           <Separator className="w-[53px] h-[1px]" />
@@ -146,8 +146,8 @@ export const DatacommSignUp: React.FC<DatacommSignUpTypes> = ({
           </span>
         </div>
       </CardContent>
-      <CardFooter className="w-full grid grid-cols-1 mt-14">
-        <p className="text-xs text-[#777980]">
+      <CardFooter className="flex flex-col  items-start w-[357px] mt-14 pl-0">
+        <p className="text-xs text-[#777980] w-full">
           By signing up for a {companyName} account, you agree to our
         </p>
         <span className="flex items-center">

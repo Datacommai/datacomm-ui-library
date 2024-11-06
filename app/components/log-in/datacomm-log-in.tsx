@@ -80,14 +80,14 @@ export const DatacommLogIn: React.FC<DatacommLogInTypes> = ({
   return (
     <Card
       style={{ width, height }}
-      className="px-10 py-3 rounded-none h-fit flex-col justify-between"
+      className="px-10 py-3 rounded-none h-fit flex flex-col items-center justify-center"
     >
-      <CardHeader className="flex justify-start">
+      <CardHeader className="pl-0 w-[357px] ">
         <Image src={logo} alt="logo" width={70} height={70} className="mr-2" />
       </CardHeader>
-      <CardContent className="flex flex-col gap-2">
+      <CardContent className="grid gap-2 justify-center">
         <CardTitle className="text-2xl text-[#1D1F2C]">{title}</CardTitle>
-        <CardDescription className="text-sm text-[#1D1F2C]">
+        <CardDescription className="text-sm text-[#1D1F2C] w-[357px]">
           {description}
         </CardDescription>
         {error && <p className="text-red-500 text-xs">{error}</p>}
@@ -118,7 +118,7 @@ export const DatacommLogIn: React.FC<DatacommLogInTypes> = ({
             onClick={handleLogIn}
           />
         </div>
-        <span className="flex gap-5 my-2 justify-center items-center">
+        <span className="flex gap-4 my-2 justify-center items-center w-full">
           <Separator className="w-[53px] h-[1px]" />
           <p className="text-[#A5A5AB]">or</p>
           <Separator className="w-[53px] h-[1px]" />
@@ -146,8 +146,8 @@ export const DatacommLogIn: React.FC<DatacommLogInTypes> = ({
           </span>
         </div>
       </CardContent>
-      <CardFooter className="w-full grid grid-cols-1 mt-14">
-        <span className="flex items-center text-center justify-center">
+      <CardFooter className="grid grid-cols-1 mt-14 ">
+        <span className="flex items-center text-center justify-center w-[357px]">
           <DatacommLink
             type={LinkTypes.UNDERLINED}
             url={"#"}
