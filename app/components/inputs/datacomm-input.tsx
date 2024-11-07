@@ -17,11 +17,13 @@ export enum InputIconTypes {
 
 export type InputProps = {
   type: InputTypes;
-  onInput?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  className: string;
 };
 
 export const DatacommInput: React.FC<InputProps> = (props) => {
-  const { type, onInput } = props;
+  const { type, value, onChange, className } = props;
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   const inputContainerStyles = "relative w-[357px] h-[40px]";
@@ -124,9 +126,10 @@ export const DatacommInput: React.FC<InputProps> = (props) => {
       {renderIcon()}
       <Input
         type={inputType}
-        className={inputStyles}
+        className={`${inputStyles} ${className}`}
         placeholder={placeholder}
-        onInput={onInput}
+        value={value}
+        onChange={onChange}
       />
     </div>
   );

@@ -12,8 +12,10 @@ describe("DatacommSignUp", () => {
       <DatacommSignUp
         title="Welcome DataComm!"
         description="Sign up to Datacomm to start building personalized outreach."
-        logo="/path/to/logo.png"
+        logo="/assets/images/mock-logo.svg"
         companyName="DataComm!"
+        width="497px"
+        height="fit-content"
         onSignUp={mockOnSignUp}
         onContinueSSO={mockOnContinueSSO}
         onContinueGoogle={mockOnContinueGoogle}
@@ -48,6 +50,17 @@ describe("DatacommSignUp", () => {
   });
 
   it("handles button clicks", () => {
+    // Fill in the required fields
+    fireEvent.change(screen.getByPlaceholderText(/Full Name/i), {
+      target: { value: "John Doe" },
+    });
+    fireEvent.change(screen.getByPlaceholderText(/Email address/i), {
+      target: { value: "john.doe@example.com" },
+    });
+    fireEvent.change(screen.getByPlaceholderText(/Password/i), {
+      target: { value: "password123" },
+    });
+
     // Click the Sign Up button
     fireEvent.click(screen.getByRole("button", { name: /Sign Up/i }));
     expect(mockOnSignUp).toHaveBeenCalled();

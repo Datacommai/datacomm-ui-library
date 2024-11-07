@@ -17,5 +17,7 @@ export const SignUp: Story = {
       "Sign up to Datacomm to start building personalized outreach for your clients.",
     logo: "/assets/images/mock-logo.svg",
     companyName: "DataComm!",
+    width: "497px",
+    height: "fit-content",
   },
 };
