@@ -4,7 +4,7 @@ import Image from "next/image";
 
 export type DatacommSearchbarTypes = {
   placeholder: string;
-  onInput: (inputValue: string) => string;
+  onInput: (inputValue: string) => void;
 };
 
 export const DatacommSearchbar: React.FC<DatacommSearchbarTypes> = (props) => {
