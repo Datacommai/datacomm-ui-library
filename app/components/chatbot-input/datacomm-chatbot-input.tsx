@@ -48,8 +48,8 @@ export const DatacoomChatbotInput: React.FC<DatacoomChatbotInputTypes> = (
       <Image
         src="/assets/icons/input-forward-icon.svg"
         alt="Right Icon"
-        width={24}
-        height={24}
+        width={34}
+        height={34}
       />
     );
   };
