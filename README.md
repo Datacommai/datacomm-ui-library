@@ -44,7 +44,7 @@
 
 ## Github worfklow 
 - Create issue with easy to read title and clear description for the task
-- When crearing PR:
+- When creating PR:
    - title should follow this standard naming: `#number - title` e.g. `#01 - Created datacomm component`
    - description should describe the tasks and key word `closes` with issue number
    - commit message should be simple and descriptive and follow this naming `#number - added colours`
