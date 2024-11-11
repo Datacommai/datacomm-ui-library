@@ -3,12 +3,12 @@ import { Input } from "@/components/ui/input";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 
-type DatacoomChatbotInputTypes = {
+type DatacommChatbotInputTypes = {
   placeholder: string;
   onSubmit: (inputValue: string) => void;
 };
 
-export const DatacoomChatbotInput: React.FC<DatacoomChatbotInputTypes> = (
+export const DatacommChatbotInput: React.FC<DatacommChatbotInputTypes> = (
   props
 ) => {
   const { placeholder, onSubmit } = props;

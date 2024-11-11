@@ -1,11 +1,11 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import { DatacoomChatbotInput } from "./datacomm-chatbot-input";
+import { DatacommChatbotInput } from "./datacomm-chatbot-input";
 
 // Mocking the onSubmit function
 const mockOnSubmit = jest.fn();
 
-describe("DatacoomChatbotInput", () => {
+describe("DatacommChatbotInput", () => {
   beforeEach(() => {
     // Reset the mock before each test
     mockOnSubmit.mockClear();
@@ -13,7 +13,7 @@ describe("DatacoomChatbotInput", () => {
 
   test("renders the component with the correct placeholder", () => {
     render(
-      <DatacoomChatbotInput
+      <DatacommChatbotInput
         placeholder="Type a message"
         onSubmit={mockOnSubmit}
       />
@@ -27,7 +27,7 @@ describe("DatacoomChatbotInput", () => {
   test("calls onSubmit when the button is clicked and clears the input", () => {
     // Arrange: Render the component with the mock onSubmit function
     render(
-      <DatacoomChatbotInput
+      <DatacommChatbotInput
         placeholder="Type a message"
         onSubmit={mockOnSubmit}
       />
@@ -54,7 +54,7 @@ describe("DatacoomChatbotInput", () => {
   test("calls onSubmit when the Enter key is pressed and clears the input", () => {
     // Arrange: Render the component with the mock onSubmit function
     render(
-      <DatacoomChatbotInput
+      <DatacommChatbotInput
         placeholder="Type a message"
         onSubmit={mockOnSubmit}
       />
