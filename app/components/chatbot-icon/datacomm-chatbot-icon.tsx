@@ -8,11 +8,10 @@ export const DatacommChatbotIcon: React.FC<DatacommChatbotIconTypes> = (
   props
 ) => {
   const { icon } = props;
-  const chatbotIconstyles = "w-[34px] h-[34px] rounded-full";
 
   return (
-    <figure className={chatbotIconstyles}>
-      <Image src={icon} alt="logo" width={34} height={34} />
+    <figure className="w-[30px] h-[30px] rounded-full">
+      <Image src={icon} alt="logo" width={30} height={30} />
     </figure>
   );
 };
