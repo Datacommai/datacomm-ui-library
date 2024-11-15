@@ -5,21 +5,17 @@ type DatacommUserInformationProps = {
   username: string;
   purchasedItemsCount: number;
   lifetimeValue: number;
+  userAvatar: string;
 };
 
 export const DatacommUserInformation: React.FC<DatacommUserInformationProps> = (
   props
 ) => {
-  const { username, purchasedItemsCount, lifetimeValue } = props;
+  const { username, purchasedItemsCount, lifetimeValue, userAvatar } = props;
 
   return (
     <section className="flex gap-2">
-      <Image
-        src="/assets/icons/user-icon.svg"
-        alt="User Icon"
-        width={52}
-        height={52}
-      />
+      <Image src={userAvatar} alt="User Icon" width={50} height={50} />
 
       <div className="flex flex-col">
         <h2 className="text-lg font-extrabold text-[#1D1F2C]">{username}</h2>

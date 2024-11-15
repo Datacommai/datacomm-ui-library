@@ -37,6 +37,6 @@ describe("DatacommChatbotIcon", () => {
     const figureElement = screen.getByRole("figure");
 
     // Assert that the figure has the correct class (chatbotIconstyles)
-    expect(figureElement).toHaveClass("w-[34px] h-[34px] rounded-full");
+    expect(figureElement).toHaveClass("w-[30px] h-[30px] rounded-full");
   });
 });

@@ -1,11 +1,12 @@
 import { render, screen } from "@testing-library/react";
 import { DatacommUserInformation } from "./datacomm-user-information-tab";
-import "@testing-library/jest-dom"; // for the 'toBeInTheDocument' matcher
+import "@testing-library/jest-dom";
 
 describe("DatacommUserInformation", () => {
   const username = "john_doe";
   const purchasedItemsCount = 5;
   const lifetimeValue = 123.45;
+  const userAvatar = "/assets/images/user-avatar.svg"; // example URL for the avatar
 
   beforeEach(() => {
     render(
@@ -13,6 +14,7 @@ describe("DatacommUserInformation", () => {
         username={username}
         purchasedItemsCount={purchasedItemsCount}
         lifetimeValue={lifetimeValue}
+        userAvatar={userAvatar} // pass the dynamic user avatar
       />
     );
   });
@@ -31,6 +33,6 @@ describe("DatacommUserInformation", () => {
 
     // Check if the image has the correct alt and src attributes
     const userImage = screen.getByAltText("User Icon");
-    expect(userImage).toHaveAttribute("src", "/assets/icons/user-icon.svg");
+    expect(userImage).toHaveAttribute("src", userAvatar);
   });
 });
