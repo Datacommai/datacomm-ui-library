@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { DatacommUserInformation } from "../app/components/user-information-tab/datacomm-user-information-tab";
 
 const meta: Meta<typeof DatacommUserInformation> = {
-  title: "Datacomm/UserInformation",
+  title: "Datacomm/User Information Tab",
   component: DatacommUserInformation,
 };
 
