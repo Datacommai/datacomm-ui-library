@@ -1,5 +1,5 @@
-import Image from "next/image";
 import { Separator } from "@/components/ui/separator";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 type DatacommUserInformationProps = {
   username: string;
@@ -15,7 +15,14 @@ export const DatacommUserInformation: React.FC<DatacommUserInformationProps> = (
 
   return (
     <section className="flex gap-2">
-      <Image src={userAvatar} alt="User Icon" width={50} height={50} />
+      <Avatar className="w-[50px] h-[50px]" data-testid="user-avatar">
+        <AvatarImage
+          src={userAvatar}
+          data-testid="user-avatar-image"
+          alt="user icon"
+        />
+        <AvatarFallback>avatar</AvatarFallback>
+      </Avatar>
 
       <div className="flex flex-col">
         <h2 className="text-lg font-extrabold text-[#1D1F2C]">{username}</h2>

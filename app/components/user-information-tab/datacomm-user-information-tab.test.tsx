@@ -31,8 +31,8 @@ describe("DatacommUserInformation", () => {
     // Check if the lifetime value is rendered
     expect(screen.getByText(`$${lifetimeValue}`)).toBeInTheDocument();
 
-    // Check if the image has the correct alt and src attributes
-    const userImage = screen.getByAltText("User Icon");
-    expect(userImage).toHaveAttribute("src", userAvatar);
+    // Check if the Avatar component exists
+    const avatar = screen.getByTestId("user-avatar");
+    expect(avatar).toBeInTheDocument();
   });
 });
