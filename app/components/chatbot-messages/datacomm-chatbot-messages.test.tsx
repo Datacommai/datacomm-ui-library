@@ -19,6 +19,20 @@ describe("DatacommChatbotMessage", () => {
     });
   });
 
+  // Mock scrollHeight and offsetHeight for DOM elements
+  beforeEach(() => {
+    jest
+      .spyOn(HTMLElement.prototype, "scrollHeight", "get")
+      .mockReturnValue(200); // Simulated content height
+    jest
+      .spyOn(HTMLElement.prototype, "offsetHeight", "get")
+      .mockReturnValue(100); // Simulated visible height
+  });
+
+  afterEach(() => {
+    jest.restoreAllMocks(); // Restore original behavior after each test
+  });
+
   it("should render correctly for 'Bot' user", () => {
     render(
       <DatacommChatbotMessage
@@ -100,7 +114,7 @@ describe("DatacommChatbotMessage", () => {
     fireEvent.click(copyButton);
 
     // Wait for the async operation to complete (clipboard copy)
-    await screen.findByText("Text to copy"); // You can also use any other async assertion if you expect a UI change after copy
+    await screen.findByText("Text to copy");
 
     // Assert that the onCopy callback was triggered with the correct text
     expect(mockOnCopy).toHaveBeenCalledWith("Text to copy");
@@ -177,5 +191,52 @@ describe("DatacommChatbotMessage", () => {
     fireEvent.click(dislikeButton);
 
     expect(mockIsGoodFeedback).toHaveBeenCalledWith(false);
+  });
+
+  it("should toggle text expansion on 'view more' click", () => {
+    render(
+      <DatacommChatbotMessage
+        user="Bot"
+        text="This is a long message that should be truncated initially and expanded when clicked. This should show more content when expanded."
+        onCopy={mockOnCopy}
+        onRefresh={mockOnRefresh}
+        onShare={mockOnShare}
+        isGoodFeedback={mockIsGoodFeedback}
+      />
+    );
+
+    // Check if "view more" button is rendered
+    const viewMoreButton = screen.getByText("view more");
+    expect(viewMoreButton).toBeInTheDocument();
+
+    // Ensure the truncated message is visible
+    const truncatedMessage = screen.getByText(
+      /This is a long message that should be truncated initially/
+    );
+    expect(truncatedMessage).toBeInTheDocument();
+
+    // Simulate clicking "view more"
+    fireEvent.click(viewMoreButton);
+
+    // Verify the button text changes to "view less"
+    expect(viewMoreButton).toHaveTextContent("view less");
+
+    // Ensure the full message is displayed
+    const expandedMessage = screen.getByText(
+      /This is a long message that should be truncated initially and expanded when clicked/
+    );
+    expect(expandedMessage).toBeInTheDocument();
+
+    // Simulate clicking "view less"
+    fireEvent.click(viewMoreButton);
+
+    // Verify the button text changes back to "view more"
+    expect(viewMoreButton).toHaveTextContent("view more");
+
+    // Ensure the message is truncated again
+    const collapsedMessage = screen.getByText(
+      /This is a long message that should be truncated initially/
+    );
+    expect(collapsedMessage).toBeInTheDocument();
   });
 });

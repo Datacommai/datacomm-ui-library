@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { useState, useEffect, useRef } from "react";
 
 function getCurrentTime(): string {
   const now = new Date();
@@ -22,42 +23,46 @@ export const DatacommChatbotMessage: React.FC<DatacommChatbotMessagesTypes> = (
 ) => {
   const { user, isGoodFeedback, onCopy, onRefresh, onShare, text } = props;
 
+  const [isExpanded, setIsExpanded] = useState(false);
+  const [isClipped, setIsClipped] = useState(false);
+  const textRef = useRef<HTMLParagraphElement>(null);
+
+  useEffect(() => {
+    if (textRef.current) {
+      const isOverflowing =
+        textRef.current.scrollHeight > textRef.current.clientHeight;
+      setIsClipped(isOverflowing);
+    }
+  }, [text]);
+
+  const toggleTextExpansion = () => {
+    setIsExpanded(!isExpanded);
+  };
+
   const styles = () => {
     switch (user) {
       case "Bot":
-        return "bg-[#FDF6FF] text-[#1D1F2C] max-w-[500px] text-sm min-h-24 max-h-[395px] flex flex-col";
+        return "bg-[#FDF6FF] text-[#1D1F2C] max-w-[500px] text-sm min-h-24 flex flex-col";
       case "Person":
-        return "bg-[#D3F4EF] text-[#1D1F2C] max-w-[500px] text-sm min-h-24 max-h-[395px] flex flex-col";
+        return "bg-[#D3F4EF] text-[#1D1F2C] max-w-[500px] text-sm min-h-24 flex flex-col";
       default:
-        return "bg-[#FDF6FF] text-[#1D1F2C] text-sm min-h-24 max-h-[395px] flex flex-col";
+        return "bg-[#FDF6FF] text-[#1D1F2C] text-sm min-h-24 flex flex-col";
     }
   };
 
-  const handleLikeClick = () => {
-    isGoodFeedback(true);
-  };
-
-  const handleDislikeClick = () => {
-    isGoodFeedback(false);
-  };
-
+  const handleLikeClick = () => isGoodFeedback(true);
+  const handleDislikeClick = () => isGoodFeedback(false);
   const handleCopyClick = async () => {
     try {
-      await navigator.clipboard.writeText(text); // Copy to clipboard
-      console.log(`Text copied to clipboard: ${text}`); // Debug log
-      onCopy(text); // Ensure onCopy callback is called with the text
+      await navigator.clipboard.writeText(text);
+      console.log(`Text copied to clipboard: ${text}`);
+      onCopy(text);
     } catch (err) {
       console.error("Failed to copy text:", err);
     }
   };
-
-  const handleRefreshClick = () => {
-    onRefresh();
-  };
-
-  const handleShareClick = () => {
-    onShare();
-  };
+  const handleRefreshClick = () => onRefresh();
+  const handleShareClick = () => onShare();
 
   const bottomsection = () => {
     switch (user) {
@@ -141,8 +146,39 @@ export const DatacommChatbotMessage: React.FC<DatacommChatbotMessagesTypes> = (
     <div
       className={`${styles()} flex flex-col justify-between py-[15px] px-5 rounded-[16px]`}
     >
-      <p>{text}</p>
-      <div>{bottomsection()}</div> {/* Call bottomsection */}
+      <p
+        ref={textRef}
+        className={`${
+          isExpanded ? "max-h-none" : "max-h-[395px]"
+        } overflow-hidden transition-all duration-300`}
+        style={{
+          WebkitLineClamp: isExpanded ? 1000 : "20",
+          display: "-webkit-box",
+          WebkitBoxOrient: "vertical",
+          textOverflow: "ellipsis",
+        }}
+      >
+        {text}
+      </p>
+
+      {isClipped && (
+        <div className="flex justify-end">
+          <Button
+            onClick={toggleTextExpansion}
+            className="text-[10px] flex gap-1 items-center text-[#777980] hover:bg-transparent bg-transparent shadow-none w-fit capitalize"
+          >
+            {isExpanded ? "view less" : "view more"}
+            <Image
+              src={"/assets/icons/drop-down-icon.svg"}
+              alt="toggle"
+              width={6.5}
+              height={3}
+            />
+          </Button>
+        </div>
+      )}
+
+      <div>{bottomsection()}</div>
     </div>
   );
 };
