@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 type DatacommChatbotIconTypes = {
   icon: string;
@@ -10,8 +10,9 @@ export const DatacommChatbotIcon: React.FC<DatacommChatbotIconTypes> = (
   const { icon } = props;
 
   return (
-    <figure className="w-[30px] h-[30px] rounded-full">
-      <Image src={icon} alt="logo" width={30} height={30} />
-    </figure>
+    <Avatar className="w-[30px] h-[30px] rounded-full" data-testid="bot-avatar">
+      <AvatarImage src={icon} data-testid="bot-avatar-image" alt="bot icon" />
+      <AvatarFallback>Bot</AvatarFallback>
+    </Avatar>
   );
 };

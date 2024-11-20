@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
 type DatacommUserProfileIconTypes = {
   icon: string;
@@ -10,8 +10,12 @@ export const DatacommUserProfileIcon: React.FC<DatacommUserProfileIconTypes> = (
   const { icon } = props;
 
   return (
-    <figure className="w-[52px] h-[52px] rounded-full">
-      <Image src={icon} alt="user icon" width={52} height={52} />
-    </figure>
+    <Avatar
+      className="w-[52px] h-[52px] rounded-full"
+      data-testid="user-avatar"
+    >
+      <AvatarImage src={icon} data-testid="user-avatar-image" alt="user icon" />
+      <AvatarFallback>User</AvatarFallback>
+    </Avatar>
   );
 };

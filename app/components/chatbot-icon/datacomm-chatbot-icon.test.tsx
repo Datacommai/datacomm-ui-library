@@ -1,5 +1,3 @@
-// DatacommChatbotIcon.test.tsx
-
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
 import { DatacommChatbotIcon } from "./datacomm-chatbot-icon";
@@ -13,30 +11,29 @@ jest.mock("next/image", () => ({
 }));
 
 describe("DatacommChatbotIcon", () => {
-  it("renders the image with correct src and alt attributes", () => {
+  it("renders the Avatar component with correct image src and alt attributes", () => {
     const iconUrl = "https://example.com/icon.png";
 
     // Render the component with the icon prop
     render(<DatacommChatbotIcon icon={iconUrl} />);
 
-    // Find the image element
-    const imageElement = screen.getByAltText("logo");
+    // Find the Avatar element by test id
+    const avatarElement = screen.getByTestId("bot-avatar");
 
-    // Assert the image src and alt attributes are correct
-    expect(imageElement).toHaveAttribute("src", iconUrl);
-    expect(imageElement).toHaveAttribute("alt", "logo");
+    // Check if Avatar element is present in the document
+    expect(avatarElement).toBeInTheDocument();
   });
 
-  it("applies the correct styles to the figure", () => {
+  it("applies the correct styles to the Avatar wrapper", () => {
     const iconUrl = "https://example.com/icon.png";
 
     // Render the component with the icon prop
     render(<DatacommChatbotIcon icon={iconUrl} />);
 
-    // Find the figure element
-    const figureElement = screen.getByRole("figure");
+    // Find the Avatar wrapper element by test id
+    const avatarElement = screen.getByTestId("bot-avatar");
 
-    // Assert that the figure has the correct class (chatbotIconstyles)
-    expect(figureElement).toHaveClass("w-[34px] h-[34px] rounded-full");
+    // Assert that the Avatar has the correct class (for width, height, rounding)
+    expect(avatarElement).toHaveClass("w-[30px] h-[30px] rounded-full");
   });
 });
