@@ -73,7 +73,7 @@ export const DatacommChatSectionMockData: React.FC = () => {
   };
 
   return (
-    <div className="grid grid-cols-1 justify-center items-center h-[862px] border-[1.5px] px-2 py-10 gap-5">
+    <div className="grid grid-cols-1 justify-center items-center h-fit border-[1.5px] px-2 py-10 gap-5">
       <span>
         <DatacommAddConversation
           title="Conversation"
