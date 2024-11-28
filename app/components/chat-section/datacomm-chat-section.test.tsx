@@ -1,7 +1,7 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import "@testing-library/jest-dom";
-import DatacommChatSectionMockData from "./datacomm-chat-section-mock-data";
+import DatacommChatSection from "./datacomm-chat-section";
 
 type MockData = {
   id: number;
@@ -38,7 +38,7 @@ const mockData: MockData[] = [
 
 describe("DatacommChatSectionMockData", () => {
   test("renders the input field with the search icon", () => {
-    render(<DatacommChatSectionMockData />);
+    render(<DatacommChatSection />);
 
     // Check if the input field is rendered with the placeholder text
     expect(screen.getByPlaceholderText("Search")).toBeInTheDocument();
@@ -48,7 +48,7 @@ describe("DatacommChatSectionMockData", () => {
   });
 
   test("renders the contact list items", () => {
-    render(<DatacommChatSectionMockData />);
+    render(<DatacommChatSection />);
 
     // Check that the mock data renders contact tab components
     mockData.forEach((contact: MockData) => {
@@ -58,7 +58,7 @@ describe("DatacommChatSectionMockData", () => {
   });
 
   test("renders the DatacommAddConversation component", () => {
-    render(<DatacommChatSectionMockData />);
+    render(<DatacommChatSection />);
 
     // Check if the title of the DatacommAddConversation component is rendered
     expect(screen.getByText("Conversation")).toBeInTheDocument();

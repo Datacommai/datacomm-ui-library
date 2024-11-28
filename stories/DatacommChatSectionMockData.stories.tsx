@@ -1,10 +1,10 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import DatacommChatSectionMockData from "@/app/mock-data/datacomm-chat-section-mock-data";
+import DatacommChatSection from "@/app/components/chat-section/datacomm-chat-section";
 
 // Meta configuration for the Storybook entry
-const meta: Meta<typeof DatacommChatSectionMockData> = {
+const meta: Meta<typeof DatacommChatSection> = {
   title: "Datacomm/Chat Section Mock Data",
-  component: DatacommChatSectionMockData,
+  component: DatacommChatSection,
   tags: ["autodocs"],
   parameters: {
     layout: "centered", // Centers the component in the Storybook canvas
@@ -13,9 +13,9 @@ const meta: Meta<typeof DatacommChatSectionMockData> = {
 
 export default meta;
 
-type Story = StoryObj<typeof DatacommChatSectionMockData>;
+type Story = StoryObj<typeof DatacommChatSection>;
 
 export const Default: Story = {
   args: {},
-  render: () => <DatacommChatSectionMockData />,
+  render: () => <DatacommChatSection />,
 };
