@@ -7,7 +7,7 @@ export type DatacommChatSectionArgs = {
   profileIcon: string;
 };
 
-export const mockData: DatacommChatSectionArgs[] = [
+export const datacommChatbotMockData: DatacommChatSectionArgs[] = [
   {
     id: 1,
     username: "John Doe",

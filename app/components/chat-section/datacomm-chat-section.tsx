@@ -5,7 +5,7 @@ import { DatacommAddConversation } from "../add-conversation/datacomm-add-conver
 import { DatacommContactTab } from "../contact-tab/datacomm-contact-tab";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
-import { mockData } from "@/app/mock-data/datacomm-chat-section-args";
+import { datacommChatbotMockData } from "@/app/mock-data/datacomm-chat-section-args";
 
 export const DatacommChatSection: React.FC = () => {
   const [searchValue, setSearchValue] = useState("");
@@ -48,7 +48,7 @@ export const DatacommChatSection: React.FC = () => {
         </div>
       </section>
 
-      {mockData.map((contact) => (
+      {datacommChatbotMockData.map((contact) => (
         <div
           className="grid grid-col justify-center items-center"
           key={contact.id}
