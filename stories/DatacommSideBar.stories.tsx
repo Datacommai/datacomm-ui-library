@@ -1,14 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { DatacommSideBar } from "@/app/components/side-bar/datacomm-side-bar";
-import {
-  BriefcaseBusiness,
-  Building2Icon,
-  CircleHelp,
-  Contact,
-  MessageSquareTextIcon,
-  ReceiptText,
-  Settings,
-} from "lucide-react";
 
 const meta: Meta<typeof DatacommSideBar> = {
   title: "Datacomm/Side Bar",
@@ -26,47 +17,48 @@ export const SideBar: Story = {
       {
         title: "Conversations",
         url: "#",
-        leftIcon: MessageSquareTextIcon,
+        leftIcon: "/assets/icons/conversation-icon.svg",
         notificationCount: 7,
-        onClick: () => alert("Navigating to Conversations"),
+        onClick: () => console.log("Navigating to Conversations"),
       },
       {
         title: "Clients",
         url: "#",
-        leftIcon: Contact,
-        onClick: () => alert("Navigating to Clients"),
+        leftIcon: "/assets/icons/client-icon.svg",
+        onClick: () => console.log("Navigating to Clients"),
       },
       {
         title: "Properties",
         url: "#",
-        leftIcon: Building2Icon,
-        onClick: () => alert("Navigating to Properties"),
+        leftIcon: "/assets/icons/buliding-icon.svg",
+        onClick: () => console.log("Navigating to Properties"),
       },
       {
         title: "Tasks",
         url: "#",
-        leftIcon: BriefcaseBusiness,
-        onClick: () => alert("Navigating to Tasks"),
+        leftIcon: "/assets/icons/tasks-icon.svg",
+        notificationCount: 3,
+        onClick: () => console.log("Navigating to Tasks"),
       },
       {
         title: "To-Do Lists",
         url: "#",
-        leftIcon: ReceiptText,
-        onClick: () => alert("Navigating to To-Do Lists"),
+        leftIcon: "/assets/icons/todolist-icon.svg",
+        onClick: () => console.log("Navigating to To-Do Lists"),
       },
     ],
     bottomItems: [
       {
         title: "Settings",
         url: "#",
-        leftIcon: Settings,
-        onClick: () => alert("Navigating to Settings"),
+        leftIcon: "/assets/icons/setting-icon.svg",
+        onClick: () => console.log("Navigating to Settings"),
       },
       {
         title: "Help",
         url: "#",
-        leftIcon: CircleHelp,
-        onClick: () => alert("Navigating to Help"),
+        leftIcon: "/assets/icons/help-icon.svg",
+        onClick: () => console.log("Navigating to Help"),
       },
     ],
   },

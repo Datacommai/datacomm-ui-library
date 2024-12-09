@@ -1,14 +1,6 @@
-import {
-  Calendar,
-  Home,
-  Inbox,
-  Search,
-  Settings,
-  LucideIcon,
-} from "lucide-react";
+import React, { useState } from "react";
 import Image from "next/image";
-import { DatacommNotification } from "../notification/datacomm-notification";
-
+import Link from "next/link";
 import {
   Sidebar,
   SidebarContent,
@@ -21,6 +13,7 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar";
+import { DatacommNotification } from "../notification/datacomm-notification";
 
 type DatacommSidebarArgs = {
   logo: string;
@@ -30,58 +23,59 @@ type DatacommSidebarArgs = {
 
 type DatacommSidebarItem = {
   title: string;
-  leftIcon: LucideIcon;
+  leftIcon: string;
   onClick?: () => void;
   notificationCount?: number;
   url?: string;
 };
 
-const topItems: DatacommSidebarItem[] = [
+const topItems = [
   {
     title: "Conversations",
     url: "#",
-    leftIcon: Home,
+    leftIcon: "/assets/icons/conversation-icon.svg",
     notificationCount: 7,
-    onClick: () => console.log("Conversations clicked"),
+    onClick: () => console.log("Navigating to Conversations"),
   },
   {
     title: "Clients",
     url: "#",
-    leftIcon: Inbox,
-    onClick: () => console.log("Clients clicked"),
+    leftIcon: "/assets/icons/client-icon.svg",
+    onClick: () => console.log("Navigating to Clients"),
   },
   {
     title: "Properties",
     url: "#",
-    leftIcon: Calendar,
-    onClick: () => console.log("Properties clicked"),
+    leftIcon: "/assets/icons/buliding-icon.svg",
+    onClick: () => console.log("Navigating to Properties"),
   },
   {
     title: "Tasks",
     url: "#",
-    leftIcon: Search,
-    onClick: () => console.log("Tasks clicked"),
+    leftIcon: "/assets/icons/tasks-icon.svg",
+    notificationCount: 3,
+    onClick: () => console.log("Navigating to Tasks"),
   },
   {
     title: "To-Do Lists",
     url: "#",
-    leftIcon: Settings,
-    onClick: () => console.log("To-Do Lists clicked"),
+    leftIcon: "/assets/icons/todolist-icon.svg",
+    onClick: () => console.log("Navigating to To-Do Lists"),
   },
 ];
 
-const bottomItems: DatacommSidebarItem[] = [
+const bottomItems = [
   {
     title: "Settings",
     url: "#",
-    leftIcon: Settings,
-    onClick: () => console.log("Settings clicked"),
+    leftIcon: "/assets/icons/setting-icon.svg",
+    onClick: () => console.log("Navigating to Settings"),
   },
   {
     title: "Help",
     url: "#",
-    leftIcon: Search,
-    onClick: () => console.log("Help clicked"),
+    leftIcon: "/assets/icons/help-icon.svg",
+    onClick: () => console.log("Navigating to Help"),
   },
 ];
 
@@ -90,38 +84,66 @@ export const DatacommSideBar: React.FC<DatacommSidebarArgs> = ({
   topItems,
   bottomItems,
 }) => {
+  const [activeItem, setActiveItem] = useState<string | null>(null);
+  const [collapsed, setCollapsed] = useState(false);
+
+  const handleItemClick = (title: string, onClick?: () => void) => {
+    setActiveItem(title);
+    if (onClick) onClick();
+  };
+
   return (
     <SidebarProvider>
-      <Sidebar collapsible="icon" variant="sidebar">
-        {/* this is the button that makes it collapse but it is appering within the
-        sidebar. I am assumning it is because of the the fact that the sidebarprovider is not used as intended in the files. */}
-
-        {/* <div className="flex justify-center bg-gray">
-          <SidebarTrigger />
-        </div> */}
-        <SidebarHeader className="flex justify-between">
+      <Sidebar collapsible="icon" variant="sidebar" className="[280px] h-full">
+        <SidebarHeader
+          className={`flex flex-row justify-between items-center ${
+            !collapsed ? "px-4" : "px-2"
+          }`}
+        >
           <Image src={logo} alt="logo" width={50} height={50} />
+          <SidebarTrigger
+            className="ml-2"
+            onClick={() => setCollapsed(!collapsed)}
+            data-testid="sidebar-trigger"
+          />
         </SidebarHeader>
+
         <SidebarContent className="flex flex-col justify-between">
           {/* Top Items */}
           <SidebarGroup>
             <SidebarGroupContent>
-              <SidebarMenu>
+              <SidebarMenu className="flex-col flex gap-[10px]">
                 {topItems.map((item) => (
-                  <SidebarMenuItem
-                    className="items-center flex"
-                    key={item.title}
-                  >
-                    <SidebarMenuButton asChild>
-                      <a href={item.url} onClick={item.onClick}>
-                        <item.leftIcon className="h-4 w-4" />
-                        <span>{item.title}</span>
-                        {item.notificationCount && (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton
+                      className={`items-center flex h-10 px-5 py-0 rounded-[10px] hover:bg-white ${
+                        activeItem === item.title
+                          ? "bg-white border border-[#A5A5AB]"
+                          : ""
+                      }`}
+                      asChild
+                      onClick={() => handleItemClick(item.title, item.onClick)}
+                      data-testid={`menu-button-${item.title}`}
+                    >
+                      <Link
+                        href={item.url || "#"}
+                        className="flex items-center w-full"
+                      >
+                        <Image
+                          src={item.leftIcon}
+                          alt={`${item.title}-icon`}
+                          width={16}
+                          height={16}
+                        />
+                        {!collapsed && (
+                          <span data-testid="menu-title">{item.title}</span>
+                        )}
+                        {!collapsed && item.notificationCount && (
                           <DatacommNotification
                             counter={item.notificationCount}
                           />
                         )}
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
@@ -132,18 +154,39 @@ export const DatacommSideBar: React.FC<DatacommSidebarArgs> = ({
           {/* Bottom Items */}
           <SidebarGroup>
             <SidebarGroupContent>
-              <SidebarMenu>
+              <SidebarMenu className="flex-col flex gap-[10px]">
                 {bottomItems.map((item) => (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild>
-                      <a href={item.url} onClick={item.onClick}>
-                        <item.leftIcon className="mr-2 h-4 w-4" />
-                        <span>{item.title}</span>
-                      </a>
+                    <SidebarMenuButton
+                      className={`items-center flex h-10 px-5 py-0 rounded-[10px] hover:bg-white ${
+                        activeItem === item.title
+                          ? "bg-white border border-[#A5A5AB]"
+                          : ""
+                      }`}
+                      asChild
+                      onClick={() => handleItemClick(item.title, item.onClick)}
+                      data-testid={`menu-button-${item.title}`}
+                    >
+                      <Link
+                        href={item.url || "#"}
+                        className="flex items-center w-full"
+                      >
+                        <Image
+                          src={item.leftIcon}
+                          alt={`${item.title}-icon`}
+                          width={16}
+                          height={16}
+                        />
+                        {!collapsed && (
+                          <span data-testid="menu-title">{item.title}</span>
+                        )}
+                        {!collapsed && item.notificationCount && (
+                          <DatacommNotification
+                            counter={item.notificationCount}
+                          />
+                        )}
+                      </Link>
                     </SidebarMenuButton>
-                    {item.notificationCount && (
-                      <DatacommNotification counter={item.notificationCount} />
-                    )}
                   </SidebarMenuItem>
                 ))}
               </SidebarMenu>
