@@ -21,7 +21,7 @@ export const DatacommAddConversation: React.FC<DatacommAddConversationProp> = (
   };
 
   return (
-    <section className="flex items-center w-[374px] justify-between">
+    <section className="flex items-center w-[394px] h-[48px] px-[10] pb-7 justify-between">
       <span className="flex gap-4">
         <Image
           src={first_icon}
