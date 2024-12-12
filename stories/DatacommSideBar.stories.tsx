@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { DatacommSideBar } from "@/app/components/side-bar/datacomm-side-bar";
+import { Switch } from "@/components/ui/switch";
 
 const meta: Meta<typeof DatacommSideBar> = {
   title: "Datacomm/Side Bar",
@@ -61,5 +62,43 @@ export const SideBar: Story = {
         onClick: () => console.log("Navigating to Help"),
       },
     ],
+    accountPreviewProps: {
+      profileIcon: "/assets/icons/user-profile-icon.svg",
+      fullname: "John Doe",
+      jobDescription: "Software Engineer",
+      dropdownItems: [
+        {
+          name: "Theme",
+          id: "1",
+          leftIcon: "/assets/icons/theme-icon.svg",
+          rightElement: (
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="flex w-full items-center"
+            >
+              <Switch />
+            </div>
+          ),
+        },
+        {
+          name: "Help & Support",
+          id: "2",
+          leftIcon: "/assets/icons/help-icon.svg",
+          rightElement: null,
+        },
+        {
+          name: "Settings",
+          id: "3",
+          leftIcon: "/assets/icons/setting-icon.svg",
+          rightElement: null,
+        },
+        {
+          name: "Log Out",
+          id: "4",
+          leftIcon: "/assets/icons/logout-icon.svg",
+          rightElement: null,
+        },
+      ],
+    },
   },
 };

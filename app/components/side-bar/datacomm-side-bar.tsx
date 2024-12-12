@@ -14,11 +14,18 @@ import {
   SidebarTrigger,
 } from "@/components/ui/sidebar";
 import { DatacommNotification } from "../notification/datacomm-notification";
+import { DatacommAccountPreview } from "../account-perview/datacomm-account-perview";
 
 type DatacommSidebarArgs = {
   logo: string;
   topItems: DatacommSidebarItem[];
   bottomItems: DatacommSidebarItem[];
+  accountPreviewProps: {
+    profileIcon: string;
+    fullname: string;
+    jobDescription: string;
+    dropdownItems: DropdownItem[];
+  };
 };
 
 type DatacommSidebarItem = {
@@ -29,60 +36,18 @@ type DatacommSidebarItem = {
   url?: string;
 };
 
-const topItems = [
-  {
-    title: "Conversations",
-    url: "#",
-    leftIcon: "/assets/icons/conversation-icon.svg",
-    notificationCount: 7,
-    onClick: () => console.log("Navigating to Conversations"),
-  },
-  {
-    title: "Clients",
-    url: "#",
-    leftIcon: "/assets/icons/client-icon.svg",
-    onClick: () => console.log("Navigating to Clients"),
-  },
-  {
-    title: "Properties",
-    url: "#",
-    leftIcon: "/assets/icons/buliding-icon.svg",
-    onClick: () => console.log("Navigating to Properties"),
-  },
-  {
-    title: "Tasks",
-    url: "#",
-    leftIcon: "/assets/icons/tasks-icon.svg",
-    notificationCount: 3,
-    onClick: () => console.log("Navigating to Tasks"),
-  },
-  {
-    title: "To-Do Lists",
-    url: "#",
-    leftIcon: "/assets/icons/todolist-icon.svg",
-    onClick: () => console.log("Navigating to To-Do Lists"),
-  },
-];
-
-const bottomItems = [
-  {
-    title: "Settings",
-    url: "#",
-    leftIcon: "/assets/icons/setting-icon.svg",
-    onClick: () => console.log("Navigating to Settings"),
-  },
-  {
-    title: "Help",
-    url: "#",
-    leftIcon: "/assets/icons/help-icon.svg",
-    onClick: () => console.log("Navigating to Help"),
-  },
-];
+type DropdownItem = {
+  name: string;
+  id: string;
+  leftIcon?: string;
+  rightElement?: React.ReactNode;
+};
 
 export const DatacommSideBar: React.FC<DatacommSidebarArgs> = ({
   logo,
   topItems,
   bottomItems,
+  accountPreviewProps,
 }) => {
   const [activeItem, setActiveItem] = useState<string | null>(null);
   const [collapsed, setCollapsed] = useState(false);
@@ -94,7 +59,11 @@ export const DatacommSideBar: React.FC<DatacommSidebarArgs> = ({
 
   return (
     <SidebarProvider>
-      <Sidebar collapsible="icon" variant="sidebar" className="[280px] h-full">
+      <Sidebar
+        collapsible="icon"
+        variant="sidebar"
+        className="w-[280px] h-full"
+      >
         <SidebarHeader
           className={`flex flex-row justify-between items-center ${
             !collapsed ? "px-4" : "px-2"
@@ -180,16 +149,14 @@ export const DatacommSideBar: React.FC<DatacommSidebarArgs> = ({
                         {!collapsed && (
                           <span data-testid="menu-title">{item.title}</span>
                         )}
-                        {!collapsed && item.notificationCount && (
-                          <DatacommNotification
-                            counter={item.notificationCount}
-                          />
-                        )}
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
+                <DatacommAccountPreview {...accountPreviewProps} />
               </SidebarMenu>
+
+              <div className="mt-4"></div>
             </SidebarGroupContent>
           </SidebarGroup>
         </SidebarContent>
