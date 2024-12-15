@@ -62,8 +62,12 @@ export const DatacommMockDashboard = () => {
  };
 
  return (
-  <div className="w-full h-[100vh] flex overflow-hidden gap-1">
-   <div className={`flex justify-evenly w-[${sideBarWidth}] h-fit`}>
+  <div className="w-screen h-screen grid grid-cols-12 gap-0">
+   {/* Sidebar Section */}
+   <div
+    className={`${
+     isSidebarCollapsed ? 'col-span-1' : 'col-span-2'
+    } h-screen flex transition-all duration-300`}>
     <DatacommSideBar
      logo={'/assets/images/mock-logo.svg'}
      isCollapsed={onHandleSidebarCollapsed}
@@ -73,32 +77,23 @@ export const DatacommMockDashboard = () => {
        url: '#',
        leftIcon: '/assets/icons/conversation-icon.svg',
        notificationCount: 7,
-       onClick: () => console.log('Navigating to Conversations'),
       },
-      {
-       title: 'Clients',
-       url: '#',
-       leftIcon: '/assets/icons/client-icon.svg',
-       onClick: () => console.log('Navigating to Clients'),
-      },
+      { title: 'Clients', url: '#', leftIcon: '/assets/icons/client-icon.svg' },
       {
        title: 'Properties',
        url: '#',
        leftIcon: '/assets/icons/buliding-icon.svg',
-       onClick: () => console.log('Navigating to Properties'),
       },
       {
        title: 'Tasks',
        url: '#',
        leftIcon: '/assets/icons/tasks-icon.svg',
        notificationCount: 3,
-       onClick: () => console.log('Navigating to Tasks'),
       },
       {
        title: 'To-Do Lists',
        url: '#',
        leftIcon: '/assets/icons/todolist-icon.svg',
-       onClick: () => console.log('Navigating to To-Do Lists'),
       },
      ]}
      bottomItems={[
@@ -106,80 +101,56 @@ export const DatacommMockDashboard = () => {
        title: 'Settings',
        url: '#',
        leftIcon: '/assets/icons/setting-icon.svg',
-       onClick: () => console.log('Navigating to Settings'),
       },
-      {
-       title: 'Help',
-       url: '#',
-       leftIcon: '/assets/icons/help-icon.svg',
-       onClick: () => console.log('Navigating to Help'),
-      },
+      { title: 'Help', url: '#', leftIcon: '/assets/icons/help-icon.svg' },
      ]}
      accountPreviewProps={{
       profileIcon: '/assets/icons/user-profile-icon.svg',
       fullname: 'John Doe',
       jobDescription: 'Software Engineer',
       dropdownItems: [
-       {
-        name: 'Theme',
-        id: '1',
-        leftIcon: '/assets/icons/theme-icon.svg',
-        rightElement: (
-         <div
-          onClick={(e) => e.stopPropagation()}
-          className="flex w-full items-center">
-          <Switch />
-         </div>
-        ),
-       },
+       { name: 'Theme', id: '1', leftIcon: '/assets/icons/theme-icon.svg' },
        {
         name: 'Help & Support',
         id: '2',
         leftIcon: '/assets/icons/help-icon.svg',
-        rightElement: null,
        },
        {
         name: 'Settings',
         id: '3',
         leftIcon: '/assets/icons/setting-icon.svg',
-        rightElement: null,
        },
-       {
-        name: 'Log Out',
-        id: '4',
-        leftIcon: '/assets/icons/logout-icon.svg',
-        rightElement: null,
-       },
+       { name: 'Log Out', id: '4', leftIcon: '/assets/icons/logout-icon.svg' },
       ],
      }}
     />
    </div>
 
-   <div className="w-[414px] h-[100vh] relative -mx-4">
+   {/* Middle Section */}
+   <div className="col-span-3 w-full h-screen flex flex-col border-r border-gray-200">
     <DatacommChatSection />
    </div>
 
+   {/* Chatbot & User Information Section */}
    <div
-    className={`w-[${
-     isSidebarCollapsed ? '70%' : '50%'
-    }] h-[100vh] relative x-4 overflow-hidden  `}>
-    <div className="mx-8">
+    className={`${
+     isSidebarCollapsed ? 'col-span-7' : 'col-span-6'
+    } h-screen flex flex-col overflow-hidden transition-all duration-300 `}>
+    <div className="px-8 pt-4 pb-2">
      <DatacommUserInformation
       username={'Ajeng Cinta Purwanti'}
       userAvatar={'/assets/icons/user-profile-icon.svg'}
       purchasedItemsCount={21}
       lifetimeValue={1235.73}
      />
-     <Separator orientation="horizontal" className="w-full my-4" />
+     <Separator orientation="horizontal" className="w-screen my-8" />
     </div>
-    <div className="mx-10 w-full h-[80%] overflow-y-scroll gap-2 flex flex-col justify-center items-center ">
+
+    <div className="flex-1 overflow-y-auto px-8 space-y-4">
      {messages.map((chat, index) => (
-      <div
-       key={index}
-       className=" flex  justify-center items-center w-[500px] ">
+      <div key={index} className="flex justify-center">
        <DatacommChatbotMessage
         user={chat.user}
-        key={index}
         text={chat.text}
         onCopy={chat.onCopy}
         onRefresh={chat.onRefresh}
@@ -189,7 +160,8 @@ export const DatacommMockDashboard = () => {
       </div>
      ))}
     </div>
-    <div className="m-4 flex justify-center">
+
+    <div className="flex justify-center items-center p-4">
      <DatacommChatbotInput
       placeholder="Type a message"
       onSubmit={handleOnInputSubmit}

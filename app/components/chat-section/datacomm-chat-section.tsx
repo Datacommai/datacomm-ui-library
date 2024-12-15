@@ -20,8 +20,8 @@ export const DatacommChatSection: React.FC = () => {
  };
 
  return (
-  <div className="grid grid-cols-1 justify-center items-center h-[100vh] border-[1.5px] px-2 py-10 gap-5">
-   <span>
+  <div className="grid grid-cols-1 justify-center items-center h-[100vh] px-2 py-10 gap-5">
+   <span className="flex flex-col  justify-center items-center">
     <DatacommAddConversation
      title="Conversation"
      first_icon="/assets/icons/message-icon.svg"
